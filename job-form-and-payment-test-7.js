@@ -325,11 +325,11 @@ function setLoading(isLoading) {
   }
   
   function sendInfoToAutocode() {
-  	let mainForm = document.querySelector('#main-form');
-  	const formData = new FormData(mainForm);
-    
     //put client secret into hidden input to sent it to Autocode
     document.querySelector('#paymentid').value = paymentId;
+    
+  	let mainForm = document.querySelector('#main-form');
+  	const formData = new FormData(mainForm);
     
   	const xhr = new XMLHttpRequest();
   	const url = 'https://dev--create-new-items--sarimpro.autocode.dev/';
