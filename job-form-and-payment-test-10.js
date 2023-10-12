@@ -64,15 +64,23 @@ async function handleSubmit(e) {
   setLoading(true);
   
   //Send info to Autocode to create CMS item
-  await sendInfoToAutocode();
-
-  const { error } = await stripe.confirmPayment({
-    elements,
-    confirmParams: {
-      // Make sure to change this to your payment completion page
-      return_url: window.location.href,
-      receipt_email: emailAddress,
-    },
+  sendInfoToAutocode()
+  .then(async result => {
+    if (result === true) {
+      const { error } = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          // Make sure to change this to your payment completion page
+          return_url: window.location.href,
+          receipt_email: emailAddress,
+        },
+      });
+    } else {
+      console.log('Server did not return true.');
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
   });
 
   // This point will only be reached if there is an immediate error when
@@ -327,24 +335,31 @@ function setLoading(isLoading) {
     }
   }
   
-  function sendInfoToAutocode() {   
-  	let mainForm = document.querySelector('#main-form');
-  	const formData = new FormData(mainForm);
-    
-  	const xhr = new XMLHttpRequest();
-  	const url = 'https://dev--create-new-items--sarimpro.autocode.dev/';
-
-  	xhr.open('POST', url, true);
-
-  	xhr.onreadystatechange = function() {
-    	if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-      	const response = JSON.parse(xhr.responseText);
-      	console.log(response);
-    	}
-  	};
-
-  	xhr.send(formData);
-  }
+  function sendInfoToAutocode() {
+    return new Promise((resolve, reject) => {
+      let mainForm = document.querySelector('#main-form');
+      const formData = new FormData(mainForm);
+  
+      const xhr = new XMLHttpRequest();
+      const url = 'https://dev--create-new-items--sarimpro.autocode.dev/';
+  
+      xhr.open('POST', url, true);
+  
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            console.log(response);
+            resolve(true);
+          } else {
+            reject(new Error('Server Error'));
+          }
+        }
+      };
+  
+      xhr.send(formData);
+    });
+  }  
   
 })
 })();
