@@ -100,6 +100,23 @@ async function checkStatus() {
 
   switch (paymentIntent.status) {
     case "succeeded":
+
+    //////confirm payment in CMS
+    const xhr = new XMLHttpRequest();
+  	const url = 'https://dev--test2--sarimpro.autocode.dev/';
+
+  	xhr.open('POST', url, true);
+
+  	xhr.onreadystatechange = function() {
+    	if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      	const response = JSON.parse(xhr.responseText);
+      	console.log(response);
+    	}
+  	};
+
+  	xhr.send(JSON.stringify({paymentid: clientSecret}));
+    //////
+
       showMessage("Payment succeeded!");
       break;
     case "processing":
@@ -322,7 +339,7 @@ function setLoading(isLoading) {
       	console.log(response);
     	}
   	};
-
+    alert('hi');
   	xhr.send(formData);
   }
   
