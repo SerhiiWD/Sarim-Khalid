@@ -66,7 +66,7 @@ async function handleSubmit(e) {
   //Send info to Autocode to create CMS item
   sendInfoToAutocode()
   .then(async result => {
-    if (result === true) {
+    if (result === "succeeded") {
       const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
