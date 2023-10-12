@@ -35,9 +35,6 @@ async function initialize() {
   const { clientSecret } = await response.json();
   
   paymentId = clientSecret;
-
-  //put client secret into hidden input to sent it to Autocode
-  document.querySelector('#paymentid').value = clientSecret;
   
   const appearance = {
     theme: 'stripe',
@@ -330,6 +327,9 @@ function setLoading(isLoading) {
   function sendInfoToAutocode() {
   	let mainForm = document.querySelector('#main-form');
   	const formData = new FormData(mainForm);
+    
+    //put client secret into hidden input to sent it to Autocode
+    document.querySelector('#paymentid').value = paymentId;
     
   	const xhr = new XMLHttpRequest();
   	const url = 'https://dev--create-new-items--sarimpro.autocode.dev/';
