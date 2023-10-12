@@ -35,6 +35,9 @@ async function initialize() {
   const { clientSecret } = await response.json();
   
   paymentId = clientSecret;
+
+  //put client secret into hidden input to sent it to Autocode
+  document.querySelector('#paymentid').value = clientSecret;
   
   const appearance = {
     theme: 'stripe',
@@ -324,10 +327,7 @@ function setLoading(isLoading) {
     }
   }
   
-  function sendInfoToAutocode() {
-    //put client secret into hidden input to sent it to Autocode
-    document.querySelector('#paymentid').value = paymentId;
-    
+  function sendInfoToAutocode() {   
   	let mainForm = document.querySelector('#main-form');
   	const formData = new FormData(mainForm);
     
