@@ -37,7 +37,13 @@ async function initialize() {
   paymentId = clientSecret;
 
   //put client secret into hidden input to sent it to Autocode
+  console.log(document.querySelector('#paymentid'));
+  console.log(document.querySelector('#paymentid').value);
+  console.log(clientSecret);
   document.querySelector('#paymentid').value = clientSecret;
+  console.log(document.querySelector('#paymentid'));
+  console.log(document.querySelector('#paymentid').value);
+  console.log(clientSecret);
   
   const appearance = {
     theme: 'stripe',
