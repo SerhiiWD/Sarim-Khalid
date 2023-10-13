@@ -342,6 +342,7 @@ function setLoading(isLoading) {
     	if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       	const response = JSON.parse(xhr.responseText);
       	console.log(response);
+        alert('yes');
         return Promise.resolve(1);
     	}
   	};
