@@ -69,7 +69,7 @@ async function handleSubmit(e) {
   //Send info to Autocode to create CMS item
   await sendInfoToAutocode()
   .then(async function (data) {
-    console.log('The new job post has been added to Webflow CMS', JSON.parse(data));
+    console.log('The new job post has been added to Webflow CMS', data);
     alert('Успех');
 
     const { error } = await stripe.confirmPayment({
