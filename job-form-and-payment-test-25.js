@@ -3,23 +3,28 @@
 ;(function() {
 document.addEventListener("DOMContentLoaded", () => {
 
-//Global variable for client secret
-//let paymentId; delete later
-
 // Necessary to prevent re-creation of a post in the collection if the payment card has not been validated
 let isFormAlreadySend = false;
 
+
+
 // -----------stripe-----------
+
+let products = {
+  "30" : { id: "price_1O0iHQJmqBSOfS191Qq95EOk" },
+  "60" : { id: "price_1O0iIDJmqBSOfS191E4mZfOv" },
+  "90" : { id: "price_1O0iHQJmqBSOfS191Qq95EOk" },
+}
 
 // This is your test publishable API key.
 const stripe = Stripe("pk_test_51NzEgZJmqBSOfS19HrwVgYkYam9FXWK7vNnXl12Iu5CLaGYRlbqcXWUuu7TgbZkPT7Yw8pGWkyS6tDmDq0lJ7p3Y00DwTFljfY");
 
 // The items the customer wants to buy
-const items = [{ id: "price_1NzVxcJmqBSOfS19ZyemESh8" }];
+const items = [];
 
 let elements;
 
-initialize();
+//initialize();
 checkStatus();
 
 document
@@ -36,8 +41,6 @@ async function initialize() {
   });
 	
   const { clientSecret } = await response.json();
-  
-  //paymentId = clientSecret; delete later
 
   //put client secret into hidden input to sent it to Autocode
   document.querySelector('#paymentid').value = clientSecret;
@@ -215,6 +218,10 @@ function setLoading(isLoading) {
   let jobDescriptionHint = document.querySelector('.form__hint--job-description');
   let jobTypeHint = document.querySelector('.form__hint--job-type');
   let jobAmountText = document.querySelector('.job-popup__job-amount');
+
+  let termSelect = document.querySelector('#term-select');
+  let termInput = document.querySelector('#term-input');
+  let confirmTermBtn = document.querySelector('#confirm-term-btn');
   
   // Confirm job form
   confirmBtn3.addEventListener('click', () => {
@@ -341,6 +348,25 @@ function setLoading(isLoading) {
       radio.previousElementSibling.classList.remove('w--redirected-checked');
     }
   }
+
+  //change term select function
+  termSelect.addEventListener('change', () => {
+    termInput.value = termSelect.value;
+    
+    //change sum on the page 
+  });
+
+  //go to the stripe form
+  confirmTermBtn.addEventListener('click', () => {
+    //add items to items array to initialize stripe payment
+    for (let i = 0; i < jobsArr.length; i++) {
+      items.push(products[term]);
+    }
+
+    //initialize stripe payment
+    initialize();
+  });
+
   
   async function sendInfoToAutocode() {  
     //This part will be executed if the job post has already been created earlier, but the first payment attempt did not go through 
