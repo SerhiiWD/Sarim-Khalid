@@ -192,6 +192,7 @@ function setLoading(isLoading) {
   let formPreview2 = document.querySelector('.form__preview-2');
   let postAnotherBtn = document.querySelector('#post-another-vacancy');
   let editBtn4 = document.querySelector('#edit-btn-4');
+  let paymentOptionsForm = document.querySelector('.form__payment-options');
   let paymentForm = document.querySelector('.form__payment');
   
   let jobCategorySelect = document.querySelector('#job-category');
@@ -320,9 +321,9 @@ function setLoading(isLoading) {
     
     jobsTextarea.value = JSON.stringify(jobsArr);
     
-    //go to payment
+    //go to payment options
     formPreview2.style.display = 'none';
-    paymentForm.style.display = 'block'; 
+    paymentOptionsForm.style.display = 'block'; 
 	})
   
   function formToObject(form) {
@@ -357,14 +358,19 @@ function setLoading(isLoading) {
   });
 
   //go to the stripe form
-  confirmTermBtn.addEventListener('click', () => {
+  confirmTermBtn.addEventListener('click', async () => {
     //add items to items array to initialize stripe payment
     for (let i = 0; i < jobsArr.length; i++) {
       items.push(products[term]);
     }
 
     //initialize stripe payment
-    initialize();
+    await initialize();
+
+    //go to payment
+    paymentOptionsForm.style.display = 'none';
+    paymentForm.style.display = 'block'; 
+
   });
 
   
