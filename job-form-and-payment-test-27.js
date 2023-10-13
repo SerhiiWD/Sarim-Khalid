@@ -359,6 +359,8 @@ function setLoading(isLoading) {
 
   //go to the stripe form
   confirmTermBtn.addEventListener('click', async () => {
+    let term = termInput.value;
+
     //add items to items array to initialize stripe payment
     for (let i = 0; i < jobsArr.length; i++) {
       items.push(products[term]);
@@ -386,6 +388,11 @@ function setLoading(isLoading) {
     return new Promise(function (resolve, reject) {
       let mainForm = document.querySelector('#main-form');
       const formData = new FormData(mainForm);
+
+      // del
+      console.log(items);
+      alert(termInput.value);
+      //
 
       const xhr = new XMLHttpRequest();
       const url = 'https://dev--create-new-items--sarimpro.autocode.dev/'       
