@@ -65,9 +65,32 @@ async function handleSubmit(e) {
   
   //Send info to Autocode to create CMS item
   await sendInfoToAutocode()
-  .then(function (data) {
+  .then(async function (data) {
     console.log('The new job post has been added to Webflow CMS', JSON.parse(data));
     alert('Успех');
+
+    const { error } = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        // Make sure to change this to your payment completion page
+        return_url: window.location.href,
+        receipt_email: emailAddress,
+      },
+    });
+  
+    
+    // This point will only be reached if there is an immediate error when
+    // confirming the payment. Otherwise, your customer will be redirected to
+    // your `return_url`. For some payment methods like iDEAL, your customer will
+    // be redirected to an intermediate site first to authorize the payment, then
+    // redirected to the `return_url`.
+    if (error.type === "card_error" || error.type === "validation_error") {
+      showMessage(error.message);
+    } else {
+      showMessage("An unexpected error occurred.");
+    }
+
+    setLoading(false);
   })
   .catch(function (error) {
     console.error('Error adding the new job post to Webflow CMS, check the autocode function', error);
@@ -76,30 +99,6 @@ async function handleSubmit(e) {
     setLoading(false);
     return;
   });
-  
-  const { error } = await stripe.confirmPayment({
-    elements,
-    confirmParams: {
-      // Make sure to change this to your payment completion page
-      return_url: window.location.href,
-      receipt_email: emailAddress,
-    },
-  });
-
-  
-  // This point will only be reached if there is an immediate error when
-  // confirming the payment. Otherwise, your customer will be redirected to
-  // your `return_url`. For some payment methods like iDEAL, your customer will
-  // be redirected to an intermediate site first to authorize the payment, then
-  // redirected to the `return_url`.
-  if (error.type === "card_error" || error.type === "validation_error") {
-    showMessage(error.message);
-  } else {
-    showMessage("An unexpected error occurred.");
-  }
-
-
-  setLoading(false);
 }
 
 // Fetches the payment intent status after payment submission
