@@ -13,7 +13,7 @@ let isFormAlreadySend = false;
 let products = {
   "30" : { id: "price_1O0iHQJmqBSOfS191Qq95EOk" },
   "60" : { id: "price_1O0iIDJmqBSOfS191E4mZfOv" },
-  "90" : { id: "price_1O0iHQJmqBSOfS191Qq95EOk" },
+  "90" : { id: "price_1O0iIkJmqBSOfS19nUN5ubxN" },
 }
 
 // This is your test publishable API key.
@@ -24,7 +24,6 @@ const items = [];
 
 let elements;
 
-//initialize();
 checkStatus();
 
 document
