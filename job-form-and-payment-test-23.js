@@ -342,8 +342,15 @@ function setLoading(isLoading) {
     }
   }
   
-  async function sendInfoToAutocode() {   
-    if (isFormAlreadySend) return;
+  async function sendInfoToAutocode() {  
+    //This part will be executed if the job post has already been created earlier, but the first payment attempt did not go through 
+    if (isFormAlreadySend) {
+      return new Promise((resolve, reject) => {
+        resolve("The job post already created!");
+      });
+    }
+
+    // Send info to Autocode and create a new job post
     return new Promise(function (resolve, reject) {
       let mainForm = document.querySelector('#main-form');
       const formData = new FormData(mainForm);
