@@ -4,7 +4,10 @@
 document.addEventListener("DOMContentLoaded", () => {
 
 //Global variable for client secret
-let paymentId;
+//let paymentId; delete later
+
+// Necessary to prevent re-creation of a post in the collection if the payment card has not been validated
+let isFormAlreadySend = false;
 
 // -----------stripe-----------
 
@@ -34,7 +37,7 @@ async function initialize() {
 	
   const { clientSecret } = await response.json();
   
-  paymentId = clientSecret;
+  //paymentId = clientSecret; delete later
 
   //put client secret into hidden input to sent it to Autocode
   document.querySelector('#paymentid').value = clientSecret;
@@ -340,6 +343,7 @@ function setLoading(isLoading) {
   }
   
   async function sendInfoToAutocode() {   
+    if (isFormAlreadySend) return;
     return new Promise(function (resolve, reject) {
       let mainForm = document.querySelector('#main-form');
       const formData = new FormData(mainForm);
@@ -350,6 +354,7 @@ function setLoading(isLoading) {
 
       xhr.onload = function () {
         if (xhr.status >= 200 && xhr.status < 300) {
+          isFormAlreadySend = true;
           resolve(xhr.response);
         } else {
           reject(xhr.statusText);
