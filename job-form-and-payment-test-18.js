@@ -64,7 +64,15 @@ async function handleSubmit(e) {
   setLoading(true);
   
   //Send info to Autocode to create CMS item
-  await sendInfoToAutocode();
+  await sendInfoToAutocode()
+  .then(function (data) {
+    console.log('Успех', JSON.parse(data));
+    alert('Успех');
+  })
+  .catch(function (error) {
+    console.error('Ошибка', error);
+    alert('Ошибка');
+  });
   
   const { error } = await stripe.confirmPayment({
     elements,
@@ -330,24 +338,28 @@ function setLoading(isLoading) {
   }
   
   async function sendInfoToAutocode() {   
-  	let mainForm = document.querySelector('#main-form');
-  	const formData = new FormData(mainForm);
-    
-  	const xhr = new XMLHttpRequest();
-  	const url = 'https://dev--create-new-items--sarimpro.autocode.dev/';
+    return new Promise(function (resolve, reject) {
+      let mainForm = document.querySelector('#main-form');
+      const formData = new FormData(mainForm);
 
-  	xhr.open('POST', url, true);
+      const xhr = new XMLHttpRequest();
+      const url = 'https://dev--create-new-items--sarimpro.autocode.dev/'       
+      xhr.open('POST', url, true);
 
-  	xhr.onreadystatechange = function() {
-    	if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-      	const response = JSON.parse(xhr.responseText);
-      	console.log(response);
-        alert('yes');
-        return Promise.resolve(1);
-    	}
-  	};
+      xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          resolve(xhr.response);
+        } else {
+          reject(xhr.statusText);
+        }
+      };
 
-  	xhr.send(formData);
+      xhr.onerror = function () {
+        reject(xhr.statusText);
+      };
+
+  	  xhr.send(formData);
+    });
   }
   
 })
