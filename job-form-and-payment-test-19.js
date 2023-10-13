@@ -66,12 +66,15 @@ async function handleSubmit(e) {
   //Send info to Autocode to create CMS item
   await sendInfoToAutocode()
   .then(function (data) {
-    console.log('Успех', JSON.parse(data));
+    console.log('The new job post has been added to Webflow CMS', JSON.parse(data));
     alert('Успех');
   })
   .catch(function (error) {
-    console.error('Ошибка', error);
+    console.error('Error adding the new job post to Webflow CMS, check the autocode function', error);
     alert('Ошибка');
+    showMessage("Something went wrong when adding a new job. Check that the information is correct and try again later.");
+    setLoading(false);
+    return;
   });
   
   const { error } = await stripe.confirmPayment({
@@ -155,7 +158,7 @@ function showMessage(messageText) {
   setTimeout(function () {
     messageContainer.classList.add("hidden");
     messageContainer.textContent = "";
-  }, 4000);
+  }, 10000);
 }
 
 // Show a spinner on payment submission
