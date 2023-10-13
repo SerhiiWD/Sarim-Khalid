@@ -118,7 +118,7 @@ async function checkStatus() {
 
     //////confirm payment in CMS
     const xhr = new XMLHttpRequest();
-  	const url = 'https://dev--test2--sarimpro.autocode.dev/';
+  	const url = 'https://dev--confirm-payment--sarimpro.autocode.dev/';
 
   	xhr.open('POST', url, true);
 
