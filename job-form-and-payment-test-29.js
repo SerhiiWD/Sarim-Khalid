@@ -222,6 +222,14 @@ function setLoading(isLoading) {
   let termSelect = document.querySelector('#term-select');
   let termInput = document.querySelector('#term-input');
   let confirmTermBtn = document.querySelector('#confirm-term-btn');
+
+  let point22 = document.querySelector('.progress__point-2--2');
+  let point32 = document.querySelector('.progress__point-3--2');
+  let point13 = document.querySelector('.progress__point-1--3');
+  let point23 = document.querySelector('.progress__point-2--3');
+  let progressLine = document.querySelector('.form__progress-line');
+  let poinText2 = document.querySelector('.progress__point-text-2');
+  let poinText3 = document.querySelector('.progress__point-text-3');
   
   // Confirm job form
   confirmBtn3.addEventListener('click', () => {
@@ -304,7 +312,7 @@ function setLoading(isLoading) {
   	formPreview2.style.display = 'none';
     form2.style.display = 'block'; 
     
-    console.log(jobsArr);
+    console.log(jobsArr); //delete later
 	})
   
   // Edit job form
@@ -367,6 +375,17 @@ function setLoading(isLoading) {
 
     //initialize stripe payment
     await initialize();
+
+    //change progress line
+    point22.style.display = 'none';
+    point32.style.display = 'block';
+    point13.style.display = 'none';
+    point23.style.display = 'block';
+    
+    poinText2.style.color = '#9c9c9c';
+    poinText3.style.color = '#68e053';
+    
+    progressLine.style.width = '100%';
 
     //go to payment
     paymentOptionsForm.style.display = 'none';
