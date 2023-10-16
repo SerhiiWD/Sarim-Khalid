@@ -55,6 +55,7 @@ async function initialize() {
     variables: {
       colorPrimary: '#68E053',
       borderRadius: '0px',
+      colorBackground: 'rgba(8, 8, 8, 0.01)',
     },
     rules: {
       '.Label': {
@@ -64,10 +65,6 @@ async function initialize() {
       },
       '.Input': {
         padding: '16px',
-      },
-      '.p-LinkInput': {
-        background: 'rgba(8, 8, 8, 0.01)!important',
-        border: '1px solid #284D25 !important'
       },
     }
   };
