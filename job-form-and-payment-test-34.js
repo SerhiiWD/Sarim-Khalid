@@ -406,6 +406,14 @@ function setLoading(isLoading) {
     }   
   });
 
+  function removeUnnecessaryElements() {
+    postAnotherBtn.remove();
+    editBtn4.remove();
+    confirmBtn4.remove();
+    termSelect.remove();
+    confirmTermBtn.remove();
+  }
+
   //go to the stripe form
   confirmTermBtn.addEventListener('click', async () => {
     showLoader();
@@ -418,6 +426,9 @@ function setLoading(isLoading) {
 
     //initialize stripe payment
     await initialize();
+
+    //remove unnecessary elements to prevent cheating
+    removeUnnecessaryElements();
 
     //go to payment
     paymentOptionsForm.style.display = 'none';
