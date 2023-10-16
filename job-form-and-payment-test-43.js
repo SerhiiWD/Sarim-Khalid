@@ -54,10 +54,15 @@ async function initialize() {
     theme: 'night',
     variables: {
       colorPrimary: '#68E053',
+      borderRadius: '0px',
     },
     rules: {
       '.Label': {
         fontWeight: '700',
+        paddingBottom: '8px'
+      },
+      '.Input': {
+        padding: '16px',
         paddingBottom: '8px'
       },
     }
