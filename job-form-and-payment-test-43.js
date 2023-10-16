@@ -57,8 +57,8 @@ async function initialize() {
     },
     rules: {
       '.Label': {
-        'font-weight': '700',
-        'padding-bottom': '8px'
+        fontWeight: '700',
+        paddingBottom: '8px'
       },
     }
   };
