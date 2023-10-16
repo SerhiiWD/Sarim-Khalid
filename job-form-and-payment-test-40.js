@@ -51,17 +51,7 @@ async function initialize() {
   document.querySelector('#paymentid').value = clientSecret;
   
   const appearance = {
-    theme: 'stripe',
-
-    variables: {
-      colorBackground: 'rgba(8, 8, 8, 0.01)',
-      colorText: '#ffffff',
-      colorDanger: '#e05353',
-      fontFamily: 'Raleway,sans-serif',
-      spacingUnit: '2px',
-      borderRadius: '0px',
-      'p-spacing3': '30px'
-    }
+    theme: 'night',
   };
   elements = stripe.elements({ appearance, clientSecret });
 
