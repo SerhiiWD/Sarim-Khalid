@@ -222,6 +222,9 @@ function setLoading(isLoading) {
   let termSelect = document.querySelector('#term-select');
   let termInput = document.querySelector('#term-input');
   let confirmTermBtn = document.querySelector('#confirm-term-btn');
+  let postsNumberText = document.querySelector('.form__options-posts-number');
+  let summary = document.querySelector('.form__options-summary-amount--js');
+  let postsSummary = document.querySelector('.form__options-posts-amount--js');
 
   let point22 = document.querySelector('.progress__point-2--2');
   let point32 = document.querySelector('.progress__point-3--2');
@@ -327,12 +330,18 @@ function setLoading(isLoading) {
 		jobsArr.push(formObject);
     
     jobsTextarea.value = JSON.stringify(jobsArr);
+
+    //display number of job posts and summary
+    postsNumberText.innerText = jobsArr.length;
+    postsSummary.innerText = jobsArr.length * 500;
+    summary.innerText = jobsArr.length * 500;
     
     //go to payment options
     formPreview2.style.display = 'none';
     paymentOptionsForm.style.display = 'block'; 
 	})
   
+  //convert form data to object
   function formToObject(form) {
 	  const formData = new FormData(form);
   	const formObject = {};
@@ -361,7 +370,17 @@ function setLoading(isLoading) {
   termSelect.addEventListener('change', () => {
     termInput.value = termSelect.value;
     
-    //change sum on the page 
+    //change summary
+    if (termSelect.value === '30') {
+      postsSummary.innerText = jobsArr.length * 500;
+      summary.innerText = jobsArr.length * 500;
+    } else if (termSelect.value === '60') {
+      postsSummary.innerText = jobsArr.length * 900;
+      summary.innerText = jobsArr.length * 900;
+    } else if (termSelect.value === '90') {
+      postsSummary.innerText = jobsArr.length * 1300;
+      summary.innerText = jobsArr.length * 1300;
+    }   
   });
 
   //go to the stripe form
