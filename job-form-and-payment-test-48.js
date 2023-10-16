@@ -52,7 +52,11 @@ async function initialize() {
   
   const appearance = {
     theme: 'night',
-    labels: 'floating'
+    labels: 'floating',
+    variables: {
+      colorPrimary: '#68E053',
+      colorBackground: '#080808',
+    },
   };
   elements = stripe.elements({ appearance, clientSecret });
 
