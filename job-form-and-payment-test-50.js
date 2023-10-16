@@ -77,7 +77,6 @@ async function initialize() {
 
 async function handleSubmit(e) {
   e.preventDefault();
-  setLoading(true);
   showLoader();
   
   //Send info to Autocode to create CMS item
@@ -107,14 +106,12 @@ async function handleSubmit(e) {
       showMessage("An unexpected error occurred.");
     }
 
-    setLoading(false);
     hideLoader();
   })
   .catch(function (error) {
     console.error('Error adding the new job post to Webflow CMS, check the autocode function', error);
     alert('Ошибка');
     showMessage("Something went wrong when adding a new job. Check that the information is correct and try again later.");
-    setLoading(false);
     hideLoader();
     return;
   });
@@ -177,20 +174,6 @@ function showMessage(messageText) {
     messageContainer.classList.add("hidden");
     messageContainer.textContent = "";
   }, 10000);
-}
-
-// Show a spinner on payment submission
-function setLoading(isLoading) {
-  if (isLoading) {
-    // Disable the button and show a spinner
-    document.querySelector("#submit").disabled = true;
-    document.querySelector("#spinner").classList.remove("hidden");
-    document.querySelector("#button-text").classList.add("hidden");
-  } else {
-    document.querySelector("#submit").disabled = false;
-    document.querySelector("#spinner").classList.add("hidden");
-    document.querySelector("#button-text").classList.remove("hidden");
-  }
 }
 
 //-----------stripe end-----------
