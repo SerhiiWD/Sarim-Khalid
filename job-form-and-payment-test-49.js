@@ -239,6 +239,7 @@ function setLoading(isLoading) {
   let postsNumberText = document.querySelector('.form__options-posts-number');
   let summary = document.querySelector('.form__options-summary-amount--js');
   let postsSummary = document.querySelector('.form__options-posts-amount--js');
+  let agreeCheckbox = document.querySelector('#agree-checkbox'); 
 
   let point22 = document.querySelector('.progress__point-2--2');
   let point32 = document.querySelector('.progress__point-3--2');
@@ -421,6 +422,8 @@ function setLoading(isLoading) {
 
   //go to the stripe form
   confirmTermBtn.addEventListener('click', async () => {
+    if (!agreeCheckbox.checked) return;
+
     showLoader();
     let term = termInput.value;
 
