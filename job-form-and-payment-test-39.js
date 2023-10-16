@@ -60,6 +60,7 @@ async function initialize() {
       fontFamily: 'Raleway,sans-serif',
       spacingUnit: '2px',
       borderRadius: '0px',
+      'p-spacing3': '30px'
     }
   };
   elements = stripe.elements({ appearance, clientSecret });
