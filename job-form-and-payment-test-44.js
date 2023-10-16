@@ -59,11 +59,13 @@ async function initialize() {
     rules: {
       '.Label': {
         fontWeight: '700',
-        paddingBottom: '8px'
+        paddingBottom: '8px',
+        fontFamily: 'Raleway,sans-serif',
       },
       '.Input': {
         padding: '16px',
-        paddingBottom: '8px'
+        background: 'rgba(8, 8, 8, 0.01)!important',
+        border: '1px solid #284D25 !important'
       },
     }
   };
