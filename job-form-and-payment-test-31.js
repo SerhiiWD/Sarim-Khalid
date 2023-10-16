@@ -16,8 +16,25 @@ let products = {
   "90" : { id: "price_1O0iIkJmqBSOfS19nUN5ubxN" },
 }
 
+let prices = {}
+
 // This is your test publishable API key.
 const stripe = Stripe("pk_test_51NzEgZJmqBSOfS19HrwVgYkYam9FXWK7vNnXl12Iu5CLaGYRlbqcXWUuu7TgbZkPT7Yw8pGWkyS6tDmDq0lJ7p3Y00DwTFljfY");
+
+// Get prices from stripe
+getPrices(products, prices);
+async function getPrices(products, prices) {
+  for (let product in products) {
+    await stripe.prices.retrieve(product.id)
+      .then(price => {
+        prices[product.key] = price.unit_amount;
+      })
+      .catch(error => {
+        console.error('Error retrieving price:', error);
+      });
+  }
+  console.log(prices);
+}
 
 // The items the customer wants to buy
 const items = [];
