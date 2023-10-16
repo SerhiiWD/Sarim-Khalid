@@ -56,7 +56,7 @@ async function initialize() {
         height: '48px',
         border: '1px solid #284D25',
         background: 'rgba(8, 8, 8, 0.01)',
-        'backdrop-filter' : 'blur(2px)',
+        backdropFilter : 'blur(2px)',
       },
     }
   };
