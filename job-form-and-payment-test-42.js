@@ -55,6 +55,12 @@ async function initialize() {
     variables: {
       colorPrimary: '#68E053',
     },
+    rules: {
+      '.Label': {
+        'font-weight': '700',
+        'padding-bottom': '8px'
+      },
+    }
   };
   elements = stripe.elements({ appearance, clientSecret });
 
