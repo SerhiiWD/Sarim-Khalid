@@ -52,6 +52,9 @@ async function initialize() {
   
   const appearance = {
     theme: 'night',
+    variables: {
+      colorPrimary: '#68E053',
+    },
   };
   elements = stripe.elements({ appearance, clientSecret });
 
