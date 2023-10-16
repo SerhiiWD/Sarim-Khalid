@@ -73,6 +73,7 @@ async function initialize() {
 async function handleSubmit(e) {
   e.preventDefault();
   setLoading(true);
+  showLoader();
   
   //Send info to Autocode to create CMS item
   await sendInfoToAutocode()
@@ -102,12 +103,14 @@ async function handleSubmit(e) {
     }
 
     setLoading(false);
+    hideLoader();
   })
   .catch(function (error) {
     console.error('Error adding the new job post to Webflow CMS, check the autocode function', error);
     alert('Ошибка');
     showMessage("Something went wrong when adding a new job. Check that the information is correct and try again later.");
     setLoading(false);
+    hideLoader();
     return;
   });
 }
@@ -240,6 +243,20 @@ function setLoading(isLoading) {
   let poinText2 = document.querySelector('.progress__point-text-2');
   let poinText3 = document.querySelector('.progress__point-text-3');
   
+  let loader = document.querySelector('#loader');
+  let body = document.querySelector('body');
+
+
+  function showLoader() {
+    loader.style.display = 'flex';
+    body.style.overflow = 'hidden';
+  }
+
+  function hideLoader() {
+    loader.style.display = 'none';
+    body.style.overflow = 'auto';
+  }
+
   // Confirm job form
   confirmBtn3.addEventListener('click', () => {
   	if (!valideteForm2()) return;
@@ -391,6 +408,7 @@ function setLoading(isLoading) {
 
   //go to the stripe form
   confirmTermBtn.addEventListener('click', async () => {
+    showLoader();
     let term = termInput.value;
 
     //add items to items array to initialize stripe payment
@@ -400,6 +418,12 @@ function setLoading(isLoading) {
 
     //initialize stripe payment
     await initialize();
+
+    //go to payment
+    paymentOptionsForm.style.display = 'none';
+    paymentForm.style.display = 'block'; 
+
+    hideLoader();
 
     //change progress line
     point22.style.display = 'none';
@@ -411,11 +435,6 @@ function setLoading(isLoading) {
     poinText3.style.color = '#68e053';
     
     progressLine.style.width = '100%';
-
-    //go to payment
-    paymentOptionsForm.style.display = 'none';
-    paymentForm.style.display = 'block'; 
-
   });
 
   
