@@ -52,21 +52,7 @@ async function initialize() {
   
   const appearance = {
     theme: 'night',
-    variables: {
-      colorPrimary: '#68E053',
-      borderRadius: '0px',
-      colorBackground: 'rgba(8, 8, 8, 0.01)',
-    },
-    rules: {
-      '.Label': {
-        fontWeight: '700',
-        paddingBottom: '8px',
-        fontFamily: 'Raleway,sans-serif',
-      },
-      '.Input': {
-        padding: '16px',
-      },
-    }
+    labels: 'floating'
   };
   elements = stripe.elements({ appearance, clientSecret });
 
