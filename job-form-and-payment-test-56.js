@@ -184,7 +184,9 @@ function showMessage(messageText) {
   let postsNumberText = document.querySelector('.form__options-posts-number');
   let summary = document.querySelector('.form__options-summary-amount--js');
   let postsSummary = document.querySelector('.form__options-posts-amount--js');
-  let agreeCheckbox = document.querySelector('#agree-checkbox'); 
+  let agreeCheckbox = document.querySelector('#agree-checkbox');
+  let highlightCheckbox = document.querySelector('#highlight-checkbox');
+  let highlightInput = document.querySelector('#highlight-input');
 
   let point22 = document.querySelector('.progress__point-2--2');
   let point32 = document.querySelector('.progress__point-3--2');
@@ -311,6 +313,11 @@ function showMessage(messageText) {
     postsNumberText.innerText = jobsArr.length;
     postsSummary.innerText = jobsArr.length * prices['30'];
     summary.innerText = jobsArr.length * prices['30'];
+
+    //show ending 's' in 'posts' word if nessesary
+    if (jobsArr.length > 1) {
+      document.querySelector('.form__options-posts-ending').style.display = 'block';
+    }
     
     //go to payment options
     formPreview2.style.display = 'none';
@@ -359,12 +366,22 @@ function showMessage(messageText) {
     }   
   });
 
+  //change highlight checkbox function
+  highlightCheckbox.addEventListener('change', () => {
+    if (highlightCheckbox.checked) {
+      highlightInput.value = 'true';
+    } else {
+      highlightInput.value = 'false';
+    }
+  });
+  
   function removeUnnecessaryElements() {
     postAnotherBtn.remove();
     editBtn4.remove();
     confirmBtn4.remove();
     termSelect.remove();
     confirmTermBtn.remove();
+    highlightCheckbox.remove();
   }
 
   //go to the stripe form
