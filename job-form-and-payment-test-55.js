@@ -83,7 +83,10 @@ async function handleSubmit(e) {
   await sendInfoToAutocode()
   .then(async function (data) {
     console.log('The new job post has been added to Webflow CMS', data);
+
+    /* for debugging
     alert('Успех');
+    */
 
     const { error } = await stripe.confirmPayment({
       elements,
@@ -110,58 +113,16 @@ async function handleSubmit(e) {
   })
   .catch(function (error) {
     console.error('Error adding the new job post to Webflow CMS, check the autocode function', error);
+
+    /* for debugging
     alert('Ошибка');
+    */
+
     showMessage("Something went wrong when adding a new job. Check that the information is correct and try again later.");
     hideLoader();
     return;
   });
 }
-
-/*
-// Fetches the payment intent status after payment submission
-async function checkStatus() {
-  const clientSecret = new URLSearchParams(window.location.search).get(
-    "payment_intent_client_secret"
-  );
-
-  if (!clientSecret) {
-    return;
-  }
-
-  const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
-
-  switch (paymentIntent.status) {
-    case "succeeded":
-
-    //////confirm payment in CMS
-    const xhr = new XMLHttpRequest();
-  	const url = 'https://dev--confirm-payment--sarimpro.autocode.dev/';
-
-  	xhr.open('POST', url, true);
-
-  	xhr.onreadystatechange = function() {
-    	if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-      	const response = JSON.parse(xhr.responseText);
-      	console.log(response);
-    	}
-  	};
-
-  	xhr.send(JSON.stringify({paymentid: clientSecret}));
-    //////
-
-      showMessage("Payment succeeded!");
-      break;
-    case "processing":
-      showMessage("Your payment is processing.");
-      break;
-    case "requires_payment_method":
-      showMessage("Your payment was not successful, please try again.");
-      break;
-    default:
-      showMessage("Something went wrong.");
-      break;
-  }
-}*/
 
 // ------- UI helpers -------
 
@@ -328,7 +289,9 @@ function showMessage(messageText) {
   	formPreview2.style.display = 'none';
     form2.style.display = 'block'; 
     
-    console.log(jobsArr); //delete later
+    /* for debugging
+    console.log(jobsArr);
+    */
 	})
   
   // Edit job form
@@ -454,10 +417,10 @@ function showMessage(messageText) {
       let mainForm = document.querySelector('#main-form');
       const formData = new FormData(mainForm);
 
-      // del
+      /* for debugging
       console.log(items);
       alert(termInput.value);
-      //
+      */
 
       const xhr = new XMLHttpRequest();
       const url = 'https://dev--create-new-items--sarimpro.autocode.dev/'       
