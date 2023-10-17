@@ -89,7 +89,7 @@ async function handleSubmit(e) {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: window.location.href,
+        return_url: 'https://sarim-khalid-e08a65.webflow.io/success-page',
         receipt_email: emailAddress,
       },
     });
