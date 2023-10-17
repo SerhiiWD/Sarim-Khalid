@@ -30,7 +30,7 @@ const items = [];
 
 let elements;
 
-checkStatus();
+//checkStatus();
 
 document
   .querySelector("#payment-form")
