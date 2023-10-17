@@ -117,6 +117,7 @@ async function handleSubmit(e) {
   });
 }
 
+/*
 // Fetches the payment intent status after payment submission
 async function checkStatus() {
   const clientSecret = new URLSearchParams(window.location.search).get(
@@ -174,7 +175,7 @@ function showMessage(messageText) {
     messageContainer.classList.add("hidden");
     messageContainer.textContent = "";
   }, 10000);
-}
+}*/
 
 //-----------stripe end-----------
 
