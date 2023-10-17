@@ -161,7 +161,7 @@ async function checkStatus() {
       showMessage("Something went wrong.");
       break;
   }
-}
+}*/
 
 // ------- UI helpers -------
 
@@ -175,7 +175,7 @@ function showMessage(messageText) {
     messageContainer.classList.add("hidden");
     messageContainer.textContent = "";
   }, 10000);
-}*/
+}
 
 //-----------stripe end-----------
 
