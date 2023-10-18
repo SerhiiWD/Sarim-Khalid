@@ -47,9 +47,9 @@ function getPricesFromStripe() {
   .catch(error => console.error('Error executing get prices request:', error));
 }
 
-async function refreshPrices() {
+function refreshPrices() {
   console.log(prices);
-  let newPrices = await getPricesFromStripe();
+  let newPrices = getPricesFromStripe();
   for (let product in products) {
     for (let newPrice of newPrices) {
       if (product.id === newPrice.id) {
