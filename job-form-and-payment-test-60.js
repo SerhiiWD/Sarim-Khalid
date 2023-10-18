@@ -14,7 +14,7 @@ let products = {
   "30" : { id: "price_1O0iHQJmqBSOfS191Qq95EOk" },
   "60" : { id: "price_1O0iIDJmqBSOfS191E4mZfOv" },
   "90" : { id: "price_1O0iIkJmqBSOfS19nUN5ubxN" },
-  "highlight" : { id: "price_1O0iIkJmqBSOfS19nUN5ubxN" },
+  "highlight" : { id: "price_1O2VDCJmqBSOfS192KL7TVGZ" },
 }
 
 let prices = {
@@ -32,7 +32,9 @@ const items = [];
 
 let elements;
 
-//checkStatus();
+(async function() {
+  console.log(await stripe.prices);
+})();
 
 document
   .querySelector("#payment-form")
@@ -398,6 +400,12 @@ function showMessage(messageText) {
     //add items to items array to initialize stripe payment
     for (let i = 0; i < jobsArr.length; i++) {
       items.push(products[term]);
+    }
+    //add highlight to items array
+    if (highlightInput.value === 'true') {
+      for (let i = 0; i < jobsArr.length; i++) {
+        items.push(products['highlight']);
+      }
     }
 
     //initialize stripe payment
