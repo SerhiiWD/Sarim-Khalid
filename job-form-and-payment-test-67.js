@@ -18,10 +18,10 @@ let products = {
 }
 
 let prices = {
-  "30" : 500,
-  "60" : 900,
-  "90" : 1300,
-  "highlight" : 50,
+  "30" : 5008,
+  "60" : 9008,
+  "90" : 13008,
+  "highlight" : 508,
 }
 
 // This is your test publishable API key.
@@ -33,18 +33,34 @@ const items = [];
 let elements;
 
 
-(async function() {
+function getPricesFromStripe() {
   fetch('https://dev--get-prices--sarimpro.autocode.dev/')
   .then(response => response.json()) // Преобразование ответа в JSON
-  .then(data => {
+  .then(pricesData => {
     // Преобразование JSON в объект JavaScript
-    const parsedData = JSON.parse(JSON.stringify(data));
+    const parsedPricesData = JSON.parse(JSON.stringify(pricesData));
 
     // Использование полученных данных
-    console.log('Полученный объект:', parsedData);
+    console.log('Полученный объект:', parsedPricesData);
+    return parsedPricesData;
   })
-  .catch(error => console.error('Ошибка при выполнении запроса:', error));
-})();
+  .catch(error => console.error('Error executing get prices request:', error));
+}
+
+async function refreshPrices() {
+  console.log(prices);
+  let newPrices = await getPricesFromStripe();
+  for (let product in products) {
+    for (let newPrice of newPrices) {
+      if (product.id === newPrice.id) {
+        prices[product.key] = newPrice.unit_amount;
+      }
+    }
+  }
+  console.log(prices);
+}
+
+refreshPrices();
 
 document
   .querySelector("#payment-form")
