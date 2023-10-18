@@ -35,7 +35,7 @@ let elements;
 
 (async function() {
   await fetch("https://dev--get-prices--sarimpro.autocode.dev/")
-  .then(response => console.log(prices)) //response.json())
+  .then(response => console.log(response)) //response.json())
   .then(prices => console.log(prices));
 })();
 
