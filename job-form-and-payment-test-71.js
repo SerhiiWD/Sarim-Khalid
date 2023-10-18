@@ -34,24 +34,31 @@ let elements;
 
 
 function getPricesFromStripe() {
-  fetch('https://dev--get-prices--sarimpro.autocode.dev/')
-  .then(response => response.json()) // Преобразование ответа в JSON
-  .then(pricesData => JSON.parse(JSON.stringify(pricesData)))
-  .then(formatedPricesData => {console.log(formatedPricesData); return formatedPricesData})
-  .catch(error => console.error('Error executing get prices request:', error));
+  return fetch('https://dev--get-prices--sarimpro.autocode.dev/')
+    .then(response => response.json()) // Преобразование ответа в JSON
+    .then(pricesData => JSON.parse(JSON.stringify(pricesData)))
+    .then(formatedPricesData => {
+      console.log(formatedPricesData);
+      return formatedPricesData;
+    })
+    .catch(error => console.error('Error executing get prices request:', error));
 }
 
-function refreshPrices() {
+async function refreshPrices() {
   console.log(prices);
-  let newPrices = getPricesFromStripe();
-  for (let product in products) {
-    for (let newPrice of newPrices) {
-      if (product.id === newPrice.id) {
-        prices[product.key] = newPrice.unit_amount;
+  try {
+    let newPrices = await getPricesFromStripe();
+    for (let product in products) {
+      for (let newPrice of newPrices) {
+        if (product.id === newPrice.id) {
+          prices[product.key] = newPrice.unit_amount;
+        }
       }
     }
+    console.log(prices);
+  } catch (error) {
+    console.error('Error in refreshing prices:', error);
   }
-  console.log(prices);
 }
 
 refreshPrices();
