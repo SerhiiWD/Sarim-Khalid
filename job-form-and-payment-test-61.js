@@ -32,8 +32,11 @@ const items = [];
 
 let elements;
 
+
 (async function() {
-  console.log(await stripe.prices);
+  await fetch("https://dev--get-prices--sarimpro.autocode.dev/")
+  .then(response => response.json())
+  .then(prices => console.log(prices));
 })();
 
 document
