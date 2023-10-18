@@ -358,13 +358,13 @@ function showMessage(messageText) {
     //change summary
     if (termSelect.value === '30') {
       postsSummary.innerText = jobsArr.length * prices['30'];
-      summary.innerText = jobsArr.length * prices['30'];
+      summary.innerText = (jobsArr.length * prices['30']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight']) : 0);
     } else if (termSelect.value === '60') {
-      postsSummary.innerText = jobsArr.length * prices['60'];
-      summary.innerText = jobsArr.length * prices['60'];
+      postsSummary.innerText = jobsArr.length * prices['60'] + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight']) : 0);
+      summary.innerText = (jobsArr.length * prices['60']);
     } else if (termSelect.value === '90') {
       postsSummary.innerText = jobsArr.length * prices['90'];
-      summary.innerText = jobsArr.length * prices['90'];
+      summary.innerText = (jobsArr.length * prices['90']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight']) : 0);
     }   
   });
 
@@ -372,9 +372,10 @@ function showMessage(messageText) {
   highlightCheckbox.addEventListener('change', () => {
     if (highlightCheckbox.checked) {
       highlightInput.value = 'true';
-      summary.innerText += jobsArr.length * prices['highlight'];
+      summary.innerText = +summary.innerText + (jobsArr.length * prices['highlight']);
     } else {
       highlightInput.value = 'false';
+      summary.innerText = +summary.innerText - (jobsArr.length * prices['highlight']);
     }
   });
   
