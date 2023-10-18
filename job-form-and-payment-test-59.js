@@ -360,8 +360,8 @@ function showMessage(messageText) {
       postsSummary.innerText = jobsArr.length * prices['30'];
       summary.innerText = (jobsArr.length * prices['30']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight']) : 0);
     } else if (termSelect.value === '60') {
-      postsSummary.innerText = jobsArr.length * prices['60'] + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight']) : 0);
-      summary.innerText = (jobsArr.length * prices['60']);
+      postsSummary.innerText = jobsArr.length * prices['60'];
+      summary.innerText = (jobsArr.length * prices['60']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight']) : 0);
     } else if (termSelect.value === '90') {
       postsSummary.innerText = jobsArr.length * prices['90'];
       summary.innerText = (jobsArr.length * prices['90']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight']) : 0);
