@@ -18,10 +18,10 @@ let products = {
 }
 
 let prices = {
-  "30" : 5008,
-  "60" : 9008,
-  "90" : 13008,
-  "highlight" : 508,
+  "30" : 500,
+  "60" : 900,
+  "90" : 1300,
+  "highlight" : 50,
 }
 
 // This is your test publishable API key.
@@ -35,10 +35,9 @@ let elements;
 
 function getPricesFromStripe() {
   return fetch('https://dev--get-prices--sarimpro.autocode.dev/')
-    .then(response => response.json()) // Преобразование ответа в JSON
+    .then(response => response.json())
     .then(pricesData => JSON.parse(JSON.stringify(pricesData)))
     .then(formatedPricesData => {
-      console.log(formatedPricesData);
       return formatedPricesData;
     })
     .catch(error => console.error('Error executing get prices request:', error));
@@ -51,7 +50,7 @@ async function refreshPrices() {
     for (let product in products) {
       for (let newPrice of newPrices) {
         if (products[product].id == newPrice.id) {
-          prices[product] = newPrice.unit_amount;
+          prices[product] = (newPrice.unit_amount / 10);
         }
       }
     }
@@ -61,6 +60,7 @@ async function refreshPrices() {
   }
 }
 
+// get prices from stripe and refresh
 refreshPrices();
 
 document
