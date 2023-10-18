@@ -14,12 +14,14 @@ let products = {
   "30" : { id: "price_1O0iHQJmqBSOfS191Qq95EOk" },
   "60" : { id: "price_1O0iIDJmqBSOfS191E4mZfOv" },
   "90" : { id: "price_1O0iIkJmqBSOfS19nUN5ubxN" },
+  "highlight" : { id: "price_1O0iIkJmqBSOfS19nUN5ubxN" },
 }
 
 let prices = {
   "30" : 500,
   "60" : 900,
   "90" : 1300,
+  "highlight" : 50,
 }
 
 // This is your test publishable API key.
@@ -370,6 +372,7 @@ function showMessage(messageText) {
   highlightCheckbox.addEventListener('change', () => {
     if (highlightCheckbox.checked) {
       highlightInput.value = 'true';
+      summary.innerText += jobsArr.length * prices['highlight'];
     } else {
       highlightInput.value = 'false';
     }
