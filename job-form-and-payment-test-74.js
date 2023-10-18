@@ -49,10 +49,9 @@ async function refreshPrices() {
   try {
     let newPrices = await getPricesFromStripe();
     for (let product in products) {
-      let a = key;
       for (let newPrice of newPrices) {
-        if (product.id == newPrice.id) {
-          prices[a] = newPrice.unit_amount;
+        if (products[product].id == newPrice.id) {
+          prices[product] = newPrice.unit_amount;
         }
       }
     }
