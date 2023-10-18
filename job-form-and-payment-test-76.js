@@ -44,7 +44,6 @@ function getPricesFromStripe() {
 }
 
 async function refreshPrices() {
-  console.log(prices);
   try {
     let newPrices = await getPricesFromStripe();
     for (let product in products) {
@@ -54,7 +53,6 @@ async function refreshPrices() {
         }
       }
     }
-    console.log(prices);
   } catch (error) {
     console.error('Error in refreshing prices:', error);
   }
