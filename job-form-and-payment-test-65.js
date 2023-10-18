@@ -34,9 +34,25 @@ let elements;
 
 
 (async function() {
-  await fetch("https://dev--get-prices--sarimpro.autocode.dev/")
-  .then(response => response.json())
-  .then(newPrices => console.log(newPrices));
+  const xhr = new XMLHttpRequest();
+      const url = 'https://dev--get-prices--sarimpro.autocode.dev/'       
+      xhr.open('GET', url, true);
+
+      xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          isFormAlreadySend = true;
+          console.log(xhr.response);
+          resolve(xhr.response);
+        } else {
+          reject(xhr.statusText);
+        }
+      };
+
+      xhr.onerror = function () {
+        reject(xhr.statusText);
+      };
+
+  	  xhr.send();
 })();
 
 document
