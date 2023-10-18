@@ -34,25 +34,16 @@ let elements;
 
 
 (async function() {
-  const xhr = new XMLHttpRequest();
-      const url = 'https://dev--get-prices--sarimpro.autocode.dev/'       
-      xhr.open('GET', url, true);
+  fetch('https://dev--get-prices--sarimpro.autocode.dev/')
+  .then(response => response.json()) // Преобразование ответа в JSON
+  .then(data => {
+    // Преобразование JSON в объект JavaScript
+    const parsedData = JSON.parse(JSON.stringify(data));
 
-      xhr.onload = function () {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          isFormAlreadySend = true;
-          console.log(xhr.response);
-          resolve(xhr.response);
-        } else {
-          reject(xhr.statusText);
-        }
-      };
-
-      xhr.onerror = function () {
-        reject(xhr.statusText);
-      };
-
-  	  xhr.send();
+    // Использование полученных данных
+    console.log('Полученный объект:', parsedData);
+  })
+  .catch(error => console.error('Ошибка при выполнении запроса:', error));
 })();
 
 document
