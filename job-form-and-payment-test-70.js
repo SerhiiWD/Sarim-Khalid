@@ -37,7 +37,7 @@ function getPricesFromStripe() {
   fetch('https://dev--get-prices--sarimpro.autocode.dev/')
   .then(response => response.json()) // Преобразование ответа в JSON
   .then(pricesData => JSON.parse(JSON.stringify(pricesData)))
-  .then(formatedPricesData => {return formatedPricesData})
+  .then(formatedPricesData => {console.log(formatedPricesData); return formatedPricesData})
   .catch(error => console.error('Error executing get prices request:', error));
 }
 
