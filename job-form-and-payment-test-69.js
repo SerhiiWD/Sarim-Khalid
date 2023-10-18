@@ -36,14 +36,8 @@ let elements;
 function getPricesFromStripe() {
   fetch('https://dev--get-prices--sarimpro.autocode.dev/')
   .then(response => response.json()) // Преобразование ответа в JSON
-  .then(pricesData => {
-    // Преобразование JSON в объект JavaScript
-    const parsedPricesData = JSON.parse(JSON.stringify(pricesData));
-
-    // Использование полученных данных
-    console.log('Полученный объект:', parsedPricesData);
-    return parsedPricesData;
-  })
+  .then(pricesData => JSON.parse(JSON.stringify(pricesData)))
+  .then(formatedPricesData => {return formatedPricesData})
   .catch(error => console.error('Error executing get prices request:', error));
 }
 
