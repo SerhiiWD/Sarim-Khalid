@@ -50,7 +50,7 @@ async function refreshPrices() {
     for (let product in products) {
       for (let newPrice of newPrices) {
         if (products[product].id == newPrice.id) {
-          prices[product] = (newPrice.unit_amount / 10);
+          prices[product] = (newPrice.unit_amount / 100);
         }
       }
     }
