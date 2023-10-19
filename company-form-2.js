@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     	flag = false;
     }
     
-    if (companyWebsiteInput.value === '' && !isValidURL()) {
+    if (companyWebsiteInput.value === '' && !isValidURL(companyWebsiteInput.value)) {
     	companyWebsiteHint.style.display = 'block';
     	flag = false;
     } else {
