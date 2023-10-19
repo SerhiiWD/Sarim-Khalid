@@ -49,10 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
     	companyEmailHint.style.display = 'block';
     	flag = false;
-    	
     }
     
-    if (companyWebsiteInput.value === '') {
+    if (companyWebsiteInput.value === '' && !isValidURL()) {
     	companyWebsiteHint.style.display = 'block';
     	flag = false;
     } else {
@@ -78,7 +77,10 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 })();
 
-
+function isValidURL(str) {
+  const pattern = new RegExp('^[a-zA-Z0-9-._~:/?#[\]@!$&\'()*+,;=%]*$');
+  return pattern.test(str);
+}
 
 // Edit company form
 ;(function() {
