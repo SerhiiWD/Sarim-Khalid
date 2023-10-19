@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function isValidURL(str) {
   const pattern = new RegExp('^[a-zA-Z0-9-._~:/?#[\]@!$&\'()*+,;=%]*$');
+  console.log(pattern.test(str));
   return pattern.test(str);
 }
 
