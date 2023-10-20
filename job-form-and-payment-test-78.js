@@ -351,6 +351,17 @@ function showMessage(messageText) {
     //go to payment options
     formPreview2.style.display = 'none';
     paymentOptionsForm.style.display = 'block'; 
+
+    //change progress line
+    point22.style.display = 'none';
+    point32.style.display = 'block';
+    point13.style.display = 'none';
+    point23.style.display = 'block';
+    
+    poinText2.style.color = '#9c9c9c';
+    poinText3.style.color = '#68e053';
+    
+    progressLine.style.width = '100%';
 	})
   
   //convert form data to object
@@ -444,17 +455,6 @@ function showMessage(messageText) {
     paymentForm.style.display = 'block'; 
 
     hideLoader();
-
-    //change progress line
-    point22.style.display = 'none';
-    point32.style.display = 'block';
-    point13.style.display = 'none';
-    point23.style.display = 'block';
-    
-    poinText2.style.color = '#9c9c9c';
-    poinText3.style.color = '#68e053';
-    
-    progressLine.style.width = '100%';
   });
 
   
