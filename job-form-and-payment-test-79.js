@@ -216,6 +216,7 @@ function showMessage(messageText) {
   let agreeCheckbox = document.querySelector('#agree-checkbox');
   let highlightCheckbox = document.querySelector('#highlight-checkbox');
   let highlightInput = document.querySelector('#highlight-input');
+  let agreeCheckboxText = document.querySelector('.form__options-checkbox-text');
 
   let point22 = document.querySelector('.progress__point-2--2');
   let point32 = document.querySelector('.progress__point-3--2');
@@ -428,7 +429,13 @@ function showMessage(messageText) {
 
   //go to the stripe form
   confirmTermBtn.addEventListener('click', async () => {
-    if (!agreeCheckbox.checked) return;
+    if (!agreeCheckbox.checked) {
+      agreeCheckboxText.style.color = '#fff';
+      setTimeout(function () {
+        agreeCheckboxText.style.color = '#9c9c9c';
+      }, 3000);
+      return;
+    }
 
     showLoader();
     let term = termInput.value;
