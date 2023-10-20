@@ -433,7 +433,7 @@ function showMessage(messageText) {
       agreeCheckboxText.style.color = '#fff';
       setTimeout(function () {
         agreeCheckboxText.style.color = '#9c9c9c';
-      }, 3000);
+      }, 1500);
       return;
     }
 
