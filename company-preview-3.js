@@ -11,6 +11,7 @@
       let progressLine = document.querySelector('.form__progress-line');
       let poinText1 = document.querySelector('.progress__point-text-1');
       let poinText2 = document.querySelector('.progress__point-text-2');
+      let submitCompanyForm = document.querySelector('.hidden-submit-btn--js');
       
       confirmBtn2.addEventListener('click', () => {
         formPreview1.style.display = 'none';
