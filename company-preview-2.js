@@ -13,8 +13,12 @@
       let poinText2 = document.querySelector('.progress__point-text-2');
       
       confirmBtn2.addEventListener('click', () => {
-          formPreview1.style.display = 'none';
+        formPreview1.style.display = 'none';
         form2.style.display = 'block';
+
+        //submit form to save the infprmation in webflow
+        console.log('submited');
+        submitCompanyForm.click();
                 
         point21.style.display = 'none';
         point31.style.display = 'block';

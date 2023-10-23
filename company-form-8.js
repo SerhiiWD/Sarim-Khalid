@@ -25,10 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
   confirmBtn1.addEventListener('click', () => {    
   	if (!valideteForm1()) return;
-
-    //submit form to save the infprmation in webflow
-    console.log('submited');
-    submitCompanyForm.click();
   
     companyName.innerText = companyNameInput.value;
     companyEmail.innerText = companyEmailInput.value;
