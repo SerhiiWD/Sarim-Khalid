@@ -21,9 +21,13 @@ document.addEventListener("DOMContentLoaded", () => {
   let companyWebsiteHint = document.querySelector('.form__hint--company-website');
   let companyDescriptionHint = document.querySelector('.form__hint--company-description');
   let logoHint = document.querySelector('.form__hint--logo');
+  let submitCompanyForm = document.querySelector('.hidden-submit-btn--js');
   
   confirmBtn1.addEventListener('click', () => {    
   	if (!valideteForm1()) return;
+
+    //submit form to save the infprmation in webflow
+    submitCompanyForm.click();
   
     companyName.innerText = companyNameInput.value;
     companyEmail.innerText = companyEmailInput.value;
