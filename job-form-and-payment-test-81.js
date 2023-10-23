@@ -184,6 +184,7 @@ function showMessage(messageText) {
   
   let jobCategorySelect = document.querySelector('#job-category');
   let jobTitleInput = document.querySelector('#job-title');
+  let jobApplicationLinkInput = document.querySelector('#link');
   let jobSalaryInput = document.querySelector('#job-salary');
   let jobCountrySelect = document.querySelector('#job-country');
   let jobDescriptionTextarea = document.querySelector('#job-description');
@@ -198,9 +199,11 @@ function showMessage(messageText) {
   let jobDescription = document.querySelector('.job-popup__info');
   let companyName = document.querySelector('.job-popup__company');
   let jobType = document.querySelector('.job-popup__type');
-  
+  let jobApplicationLink = document.querySelector('.job-popup__application');
+
   let jobCategoryHint = document.querySelector('.form__hint--job-category');
   let jobTitleHint = document.querySelector('.form__hint--job-title');
+  let jobApplicationLinkHint = document.querySelector('.form__hint--job-application-link');
   let jobSalaryHint = document.querySelector('.form__hint--job-salary');
   let jobCountryHint = document.querySelector('.form__hint--job-country');
   let jobDescriptionHint = document.querySelector('.form__hint--job-description');
@@ -246,6 +249,7 @@ function showMessage(messageText) {
     
     companyName.innerText = companyNameInput.value;
     jobTitle.innerText = jobTitleInput.value;
+    jobApplicationLink.innerText = jobApplicationLinkInput.value;
     jobSalary.innerText = jobSalaryInput.value;
     jobCountry.innerText = jobCountrySelect.value;
     for (let radio of jobTypeRadio) {
@@ -278,6 +282,13 @@ function showMessage(messageText) {
     	flag = false;  
     } else {
     	jobTitleHint.style.display = 'none';
+    }
+
+    if (jobApplicationLinkInput.value === '') {
+      jobApplicationLinkHint.style.display = 'block';
+    	flag = false;  
+    } else {
+    	jobApplicationLinkHint.style.display = 'none';
     }
     
     if (jobSalaryInput.value === '') {
@@ -380,6 +391,7 @@ function showMessage(messageText) {
   function clearForm2() {
   	jobCategorySelect.selectedIndex = '0';
   	jobTitleInput.value = '';
+    jobApplicationLinkInput.value = '';
   	jobSalaryInput.value = '';
   	jobCountrySelect.selectedIndex = '0';
   	jobDescriptionTextarea.value = '';
