@@ -416,11 +416,11 @@ function showMessage(messageText) {
       highlightSummary.innerText = jobsArr.length * prices['highlight'];
     } else if (termSelect.value === '60') {
       postsSummary.innerText = jobsArr.length * prices['60'];
-      summary.innerText = (jobsArr.length * prices['60']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight']) : 0);
+      summary.innerText = (jobsArr.length * prices['60']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight'] * 2) : 0);
       highlightSummary.innerText = jobsArr.length * prices['highlight'] * 2;
     } else if (termSelect.value === '90') {
       postsSummary.innerText = jobsArr.length * prices['90'];
-      summary.innerText = (jobsArr.length * prices['90']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight']) : 0);
+      summary.innerText = (jobsArr.length * prices['90']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight'] * 3) : 0);
       highlightSummary.innerText = jobsArr.length * prices['highlight'] * 3;
     }   
   });
@@ -465,7 +465,6 @@ function showMessage(messageText) {
 
     //add highlight to items array
     let highlightTerm = +termInput.value / 30;
-    console.log(highlightTerm);
     if (highlightInput.value === 'true') {
       for (let i = 0; i < (jobsArr.length * highlightTerm); i++) {
         items.push(products['highlight']);
