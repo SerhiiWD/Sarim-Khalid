@@ -428,10 +428,10 @@
     highlightCheckbox.addEventListener('change', () => {
       if (highlightCheckbox.checked) {
         highlightInput.value = 'true';
-        summary.innerText = +summary.innerText + (jobsArr.length * prices['highlight']);
+        summary.innerText = +summary.innerText + (jobsArr.length * prices['highlight'] * (termInput.value / 30));
       } else {
         highlightInput.value = 'false';
-        summary.innerText = +summary.innerText - (jobsArr.length * prices['highlight']);
+        summary.innerText = +summary.innerText - (jobsArr.length * prices['highlight'] * (termInput.value / 30));
       }
     });
     
