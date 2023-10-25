@@ -17,8 +17,7 @@
         formPreview1.style.display = 'none';
         form2.style.display = 'block';
 
-        //submit form to save the infprmation in webflow
-        console.log('submited');
+        //submit form to save the information in webflow
         submitCompanyForm.click();
                 
         point21.style.display = 'none';

@@ -121,7 +121,7 @@ async function handleSubmit(e) {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: 'https://sarim-khalid-e08a65.webflow.io/success-page',
+        return_url: '/success-page',
         receipt_email: emailAddress,
       },
     });
@@ -215,6 +215,7 @@ function showMessage(messageText) {
   let confirmTermBtn = document.querySelector('#confirm-term-btn');
   let postsNumberText = document.querySelector('.form__options-posts-number');
   let summary = document.querySelector('.form__options-summary-amount--js');
+  let highlightSummary = document.querySelector('.form__options-hightlight-amount--js');
   let postsSummary = document.querySelector('.form__options-posts-amount--js');
   let agreeCheckbox = document.querySelector('#agree-checkbox');
   let highlightCheckbox = document.querySelector('#highlight-checkbox');
@@ -354,6 +355,8 @@ function showMessage(messageText) {
     postsNumberText.innerText = jobsArr.length;
     postsSummary.innerText = jobsArr.length * prices['30'];
     summary.innerText = jobsArr.length * prices['30'];
+    highlightSummary.innerText = jobsArr.length * prices['highlight'];
+
 
     //show ending 's' in 'posts' word if nessesary
     if (jobsArr.length > 1) {
@@ -410,12 +413,15 @@ function showMessage(messageText) {
     if (termSelect.value === '30') {
       postsSummary.innerText = jobsArr.length * prices['30'];
       summary.innerText = (jobsArr.length * prices['30']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight']) : 0);
+      highlightSummary.innerText = jobsArr.length * prices['highlight'];
     } else if (termSelect.value === '60') {
       postsSummary.innerText = jobsArr.length * prices['60'];
       summary.innerText = (jobsArr.length * prices['60']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight']) : 0);
+      highlightSummary.innerText = jobsArr.length * prices['highlight'] * 2;
     } else if (termSelect.value === '90') {
       postsSummary.innerText = jobsArr.length * prices['90'];
       summary.innerText = (jobsArr.length * prices['90']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight']) : 0);
+      highlightSummary.innerText = jobsArr.length * prices['highlight'] * 3;
     }   
   });
 
