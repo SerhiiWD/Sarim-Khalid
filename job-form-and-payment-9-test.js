@@ -459,7 +459,6 @@
   
       //add highlight to items array
       let highlightTerm = +termInput.value / 30;
-      console.log(highlightTerm);
       if (highlightInput.value === 'true') {
         for (let i = 0; i < (jobsArr.length * highlightTerm); i++) {
           items.push(products['highlight']);
