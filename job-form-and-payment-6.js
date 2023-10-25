@@ -466,10 +466,15 @@
       //add highlight to items array
       let highlightTerm = +termInput.value / 30;
       if (highlightInput.value === 'true') {
-        for (let i = 0; i < (jobsArr.length * highlightTerm); i++) {
+        for (let i = 0; i < jobsArr.length; i++) {
           items.push(products['highlight']);
         }
       }
+      console.log(items);
+
+      /*for (let i = 0; i < (jobsArr.length * highlightTerm); i++) {
+        items.push(products['highlight']);
+      }*/
   
       //initialize stripe payment
       await initialize();
