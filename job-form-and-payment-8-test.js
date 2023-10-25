@@ -121,7 +121,7 @@
         elements,
         confirmParams: {
           // Make sure to change this to your payment completion page
-          return_url: '/success-page',
+          return_url: 'https://sarim-khalid-e08a65.webflow.io/success-page',
           receipt_email: emailAddress,
         },
       });
@@ -215,7 +215,6 @@
     let confirmTermBtn = document.querySelector('#confirm-term-btn');
     let postsNumberText = document.querySelector('.form__options-posts-number');
     let summary = document.querySelector('.form__options-summary-amount--js');
-    let highlightSummary = document.querySelector('.form__options-hightlight-amount--js');
     let postsSummary = document.querySelector('.form__options-posts-amount--js');
     let agreeCheckbox = document.querySelector('#agree-checkbox');
     let highlightCheckbox = document.querySelector('#highlight-checkbox');
@@ -355,8 +354,6 @@
       postsNumberText.innerText = jobsArr.length;
       postsSummary.innerText = jobsArr.length * prices['30'];
       summary.innerText = jobsArr.length * prices['30'];
-      highlightSummary.innerText = jobsArr.length * prices['highlight'];
-  
   
       //show ending 's' in 'posts' word if nessesary
       if (jobsArr.length > 1) {
@@ -413,15 +410,12 @@
       if (termSelect.value === '30') {
         postsSummary.innerText = jobsArr.length * prices['30'];
         summary.innerText = (jobsArr.length * prices['30']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight']) : 0);
-        highlightSummary.innerText = jobsArr.length * prices['highlight'];
       } else if (termSelect.value === '60') {
         postsSummary.innerText = jobsArr.length * prices['60'];
-        summary.innerText = (jobsArr.length * prices['60']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight'] * 2) : 0);
-        highlightSummary.innerText = jobsArr.length * prices['highlight'] * 2;
+        summary.innerText = (jobsArr.length * prices['60']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight']) : 0);
       } else if (termSelect.value === '90') {
         postsSummary.innerText = jobsArr.length * prices['90'];
-        summary.innerText = (jobsArr.length * prices['90']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight'] * 3) : 0);
-        highlightSummary.innerText = jobsArr.length * prices['highlight'] * 3;
+        summary.innerText = (jobsArr.length * prices['90']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight']) : 0);
       }   
     });
   
@@ -429,10 +423,10 @@
     highlightCheckbox.addEventListener('change', () => {
       if (highlightCheckbox.checked) {
         highlightInput.value = 'true';
-        summary.innerText = +summary.innerText + (jobsArr.length * prices['highlight'] * (termInput.value / 30));
+        summary.innerText = +summary.innerText + (jobsArr.length * prices['highlight']);
       } else {
         highlightInput.value = 'false';
-        summary.innerText = +summary.innerText - (jobsArr.length * prices['highlight'] * (termInput.value / 30));
+        summary.innerText = +summary.innerText - (jobsArr.length * prices['highlight']);
       }
     });
     
@@ -465,6 +459,7 @@
   
       //add highlight to items array
       let highlightTerm = +termInput.value / 30;
+      console.log(highlightTerm);
       if (highlightInput.value === 'true') {
         for (let i = 0; i < (jobsArr.length * highlightTerm); i++) {
           items.push(products['highlight']);
