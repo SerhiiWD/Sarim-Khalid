@@ -11,10 +11,10 @@
   // -----------stripe-----------
   
   let products = {
-    "30" : { id: "price_1O0iHQJmqBSOfS191Qq95EOk" },
-    "60" : { id: "price_1O0iIDJmqBSOfS191E4mZfOv" },
-    "90" : { id: "price_1O0iIkJmqBSOfS19nUN5ubxN" },
-    "highlight" : { id: "price_1O2VDCJmqBSOfS192KL7TVGZ" },
+    "30" : { id: "price_1NzVxcJmqBSOfS19ZyemESh8" },
+    "60" : { id: "price_1O4iiZJmqBSOfS19WtNBfW6F" },
+    "90" : { id: "price_1O4ij3JmqBSOfS19SMFsQ94I" },
+    "highlight" : { id: "price_1O4j3aJmqBSOfS195ZbmRPPX" },
   }
   
   let prices = {
@@ -25,7 +25,7 @@
   }
   
   // This is your test publishable API key.
-  const stripe = Stripe("pk_test_51NzEgZJmqBSOfS19HrwVgYkYam9FXWK7vNnXl12Iu5CLaGYRlbqcXWUuu7TgbZkPT7Yw8pGWkyS6tDmDq0lJ7p3Y00DwTFljfY");
+  const stripe = Stripe("pk_live_51NzEgZJmqBSOfS19dmYBUvsFMPlU7CPQ2gtDeGYafblw7soImSsmzhjlZRlmD5CGVflLCBuRFki39uFwJ91vgGfv00gNniE2S6");
   
   // The items the customer wants to buy
   const items = [];
@@ -121,7 +121,7 @@
         elements,
         confirmParams: {
           // Make sure to change this to your payment completion page
-          return_url: '/success-page',
+          return_url: 'https://www.aimljobs.co/success-page',
           receipt_email: emailAddress,
         },
       });
@@ -356,7 +356,6 @@
       postsSummary.innerText = jobsArr.length * prices['30'];
       summary.innerText = jobsArr.length * prices['30'];
       highlightSummary.innerText = jobsArr.length * prices['highlight'];
-  
   
       //show ending 's' in 'posts' word if nessesary
       if (jobsArr.length > 1) {
