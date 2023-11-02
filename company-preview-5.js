@@ -36,10 +36,10 @@
 
       // get user ID from memberstuck and set it into input
       function setUserId() {
-        let userId = JSON.parse(localStorage.getItem("_ms-mem")).id;
+        let user = JSON.parse(localStorage.getItem("_ms-mem"));
 
-        if (userId) {
-          userIdInput.value = userId;
+        if (user) {
+          userIdInput.value = user.id;
         }
       }
     })
