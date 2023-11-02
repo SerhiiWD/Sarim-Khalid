@@ -12,8 +12,11 @@
       let poinText1 = document.querySelector('.progress__point-text-1');
       let poinText2 = document.querySelector('.progress__point-text-2');
       let submitCompanyForm = document.querySelector('.hidden-submit-btn--js');
+      let userIdInput = document.querySelector('#user-id');
       
       confirmBtn2.addEventListener('click', () => {
+        setUserId();
+
         formPreview1.style.display = 'none';
         form2.style.display = 'block';
 
@@ -30,5 +33,14 @@
         
         progressLine.style.width = '50%';
       })
+
+      // get user ID from memberstuck and set it into input
+      function setUserId() {
+        let userId = JSON.parse(localStorage.getItem("_ms-mem")).id;
+
+        if (userId) {
+          userIdInput.value = userId;
+        }
+      }
     })
 })();
