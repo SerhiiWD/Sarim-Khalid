@@ -14,14 +14,18 @@
     "30" : { id: "price_1NzVxcJmqBSOfS19ZyemESh8" },
     "60" : { id: "price_1O4iiZJmqBSOfS19WtNBfW6F" },
     "90" : { id: "price_1O4ij3JmqBSOfS19SMFsQ94I" },
+    "autorenew" : { id: "price_1O8HlLJmqBSOfS19ccbFvPA4" },
     "highlight" : { id: "price_1O4j3aJmqBSOfS195ZbmRPPX" },
+    "autorenew-highlight" : { id: "price_1O9SrwJmqBSOfS19d6DnmCMi" },
   }
   
   let prices = {
     "30" : 500,
     "60" : 900,
     "90" : 1300,
+    "autorenew" : 500,
     "highlight" : 50,
+    "autorenew-highlight" : 50,
   }
   
   // This is your test publishable API key.
@@ -458,15 +462,28 @@
       let term = termInput.value;
   
       //add items to items array to initialize stripe payment
-      for (let i = 0; i < jobsArr.length; i++) {
-        items.push(products[term]);
-      }
-  
-      //add highlight to items array
-      let highlightTerm = +termInput.value / 30;
-      if (highlightInput.value === 'true') {
-        for (let i = 0; i < (jobsArr.length * highlightTerm); i++) {
-          items.push(products['highlight']);
+      if (termInput.value == 'autorenew') {
+        for (let i = 0; i < jobsArr.length; i++) {
+          items.push(products['autorenew']);
+        }
+
+        //add highlight to items array
+        if (highlightInput.value === 'true') {
+          for (let i = 0; i < jobsArr.length; i++) {
+            items.push(products['autorenew-highlight']);
+          }
+        }
+      } else {
+        for (let i = 0; i < jobsArr.length; i++) {
+          items.push(products[term]);
+        }
+    
+        //add highlight to items array
+        let highlightTerm = +termInput.value / 30;
+        if (highlightInput.value === 'true') {
+          for (let i = 0; i < (jobsArr.length * highlightTerm); i++) {
+            items.push(products['highlight']);
+          }
         }
       }
   
