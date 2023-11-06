@@ -439,7 +439,11 @@
         postsSummary.innerText = jobsArr.length * prices['90'];
         summary.innerText = (jobsArr.length * prices['90']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight'] * 3) : 0);
         highlightSummary.innerText = jobsArr.length * prices['highlight'] * 3;
-      }   
+      } else if (termSelect.value === 'autorenew') {
+        postsSummary.innerText = jobsArr.length * prices['30'];
+        summary.innerText = (jobsArr.length * prices['30']) + (highlightCheckbox.checked ? (jobsArr.length * prices['highlight']) : 0);
+        highlightSummary.innerText = jobsArr.length * prices['highlight'];
+      }    
     });
   
     //change highlight checkbox function
