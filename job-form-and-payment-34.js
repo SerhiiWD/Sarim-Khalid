@@ -93,7 +93,7 @@
     const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items  , email: document.querySelector('#company-email').value}),
+      body: JSON.stringify({ items  , email: getCurrentUserEmail()}),
     });
 
     const data = await response.json();
@@ -531,8 +531,18 @@
   
       hideLoader();
     });
-  
     
+    // returns current user email, if user is not logined returns company email
+    function getCurrentUserEmail() {
+      let user = JSON.parse(localStorage.getItem("_ms-mem"));
+
+      if (user) {
+        return user.auth.email;
+      } else {
+        return document.querySelector('#company-email').value;
+      }
+    }
+
     async function sendInfoToAutocode() {  
       //This part will be executed if the job post has already been created earlier, but the first payment attempt did not go through 
       if (isFormAlreadySend) {
