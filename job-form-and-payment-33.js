@@ -96,8 +96,10 @@
       body: JSON.stringify({ items  , email: document.querySelector('#company-email').value}),
     });
 
-    const { clientSecret } = await response.json();
-    const { subscriptionId } = await response.json();
+    const data = await response.json();
+    const clientSecret = data.clientSecret;
+    const subscriptionId = data.subscriptionId;
+
    
     //put client secret into hidden input to sent it to Autocode
     document.querySelector('#paymentid').value = clientSecret;
