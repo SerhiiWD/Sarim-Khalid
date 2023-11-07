@@ -86,9 +86,9 @@
     const response = await fetch("https://dev--test--sarimpro.autocode.dev/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: JSON.stringify({ items }), email: document.querySelector('#company-email').value }),
+      body: JSON.stringify({ items: 'djnjsf', email: 'sdfpmbgfp' }),
     });
-    
+    //JSON.stringify({ items })
     const { clientSecret } = await response.json();
   
     //put client secret into hidden input to sent it to Autocode
