@@ -83,7 +83,14 @@
   let emailAddress = '';
   // Fetches a payment intent and captures the client secret
   async function initialize() {
-    const response = await fetch("https://dev--test--sarimpro.autocode.dev/", {
+    let url;
+    if (termInput.value == 'autorenew') {
+      url = 'https://dev--test--sarimpro.autocode.dev/';
+    } else {
+      url = 'https://dev--stripe-backend--sarimpro.autocode.dev/';
+    }
+
+    const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ items  , email: document.querySelector('#company-email').value}),
