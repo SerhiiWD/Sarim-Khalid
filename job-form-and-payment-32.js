@@ -97,9 +97,14 @@
     });
 
     const { clientSecret } = await response.json();
-  
+    const { subscriptionId } = await response.json();
+   
     //put client secret into hidden input to sent it to Autocode
     document.querySelector('#paymentid').value = clientSecret;
+    //put subscription id into hidden input to sent it to Autocode
+    if (subscriptionId) {
+      document.querySelector('#subscriptionid').value = subscriptionId;
+    }
     
     const appearance = {
       theme: 'night',
