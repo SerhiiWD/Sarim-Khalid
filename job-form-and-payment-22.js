@@ -86,7 +86,7 @@
     const response = await fetch("https://dev--test--sarimpro.autocode.dev/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items }),
+      body: JSON.stringify({ items: { items } }),
     });
     
     const { clientSecret } = await response.json();
