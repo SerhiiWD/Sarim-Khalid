@@ -83,7 +83,7 @@
   let emailAddress = '';
   // Fetches a payment intent and captures the client secret
   async function initialize() {
-    const response = await fetch("https://dev--stripe-backend--sarimpro.autocode.dev/", {
+    const response = await fetch("https://dev--test--sarimpro.autocode.dev/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ items: { items }, email: document.querySelector('#company-email').value, }),
@@ -538,8 +538,7 @@
         */
   
         const xhr = new XMLHttpRequest();
-        //const url = 'https://dev--create-new-items--sarimpro.autocode.dev/';    
-        const url = 'https://dev--test--sarimpro.autocode.dev/';
+        const url = 'https://dev--create-new-items--sarimpro.autocode.dev/';    
         xhr.open('POST', url, true);
   
         xhr.onload = function () {
