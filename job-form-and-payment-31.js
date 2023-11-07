@@ -85,7 +85,7 @@
   async function initialize() {
     let url;
     if (termInput.value == 'autorenew') {
-      url = 'https://dev--test--sarimpro.autocode.dev/';
+      url = 'https://dev--stripe-subscription-backend--sarimpro.autocode.dev/';
     } else {
       url = 'https://dev--stripe-backend--sarimpro.autocode.dev/';
     }
@@ -457,10 +457,10 @@
     highlightCheckbox.addEventListener('change', () => {
       if (highlightCheckbox.checked) {
         highlightInput.value = 'true';
-        summary.innerText = +summary.innerText + (jobsArr.length * prices['highlight'] * (termInput.value / 30));
+        summary.innerText = +summary.innerText + (jobsArr.length * prices['highlight'] * ((termInput.value / 30) || 1));
       } else {
         highlightInput.value = 'false';
-        summary.innerText = +summary.innerText - (jobsArr.length * prices['highlight'] * (termInput.value / 30));
+        summary.innerText = +summary.innerText - (jobsArr.length * prices['highlight'] * ((termInput.value / 30) || 1));
       }
     });
     
