@@ -11,20 +11,20 @@
   // -----------stripe-----------
   
   let products = {
-    /*"30" : { id: "price_1NzVxcJmqBSOfS19ZyemESh8" },
+    "30" : { id: "price_1NzVxcJmqBSOfS19ZyemESh8" },
     "60" : { id: "price_1O4iiZJmqBSOfS19WtNBfW6F" },
     "90" : { id: "price_1O4ij3JmqBSOfS19SMFsQ94I" },
     "autorenew" : { id: "price_1O8HlLJmqBSOfS19ccbFvPA4" },
     "highlight" : { id: "price_1O4j3aJmqBSOfS195ZbmRPPX" },
     "autorenew-highlight" : { id: "price_1O9SrwJmqBSOfS19d6DnmCMi" },
-    */
+
     // test
-    "30" : { id: "price_1O0iHQJmqBSOfS191Qq95EOk" },
+    /*"30" : { id: "price_1O0iHQJmqBSOfS191Qq95EOk" },
     "60" : { id: "price_1O0iIDJmqBSOfS191E4mZfOv" },
     "90" : { id: "price_1O0iIkJmqBSOfS19nUN5ubxN" },
     "autorenew" : { id: "price_1O9UW7JmqBSOfS19ccj8C2cX" },
     "highlight" : { id: "price_1O2VDCJmqBSOfS192KL7TVGZ" },
-    "autorenew-highlight" : { id: "price_1O9lfZJmqBSOfS19ndxBMqfM" },
+    "autorenew-highlight" : { id: "price_1O9lfZJmqBSOfS19ndxBMqfM" },*/
   }
   
   let prices = {
@@ -37,9 +37,9 @@
   }
   
   // This is your test publishable API key.
-  // const stripe = Stripe("pk_live_51NzEgZJmqBSOfS19dmYBUvsFMPlU7CPQ2gtDeGYafblw7soImSsmzhjlZRlmD5CGVflLCBuRFki39uFwJ91vgGfv00gNniE2S6");
+  const stripe = Stripe("pk_live_51NzEgZJmqBSOfS19dmYBUvsFMPlU7CPQ2gtDeGYafblw7soImSsmzhjlZRlmD5CGVflLCBuRFki39uFwJ91vgGfv00gNniE2S6");
   // test
-  const stripe = Stripe("pk_test_51NzEgZJmqBSOfS19HrwVgYkYam9FXWK7vNnXl12Iu5CLaGYRlbqcXWUuu7TgbZkPT7Yw8pGWkyS6tDmDq0lJ7p3Y00DwTFljfY");
+  //const stripe = Stripe("pk_test_51NzEgZJmqBSOfS19HrwVgYkYam9FXWK7vNnXl12Iu5CLaGYRlbqcXWUuu7TgbZkPT7Yw8pGWkyS6tDmDq0lJ7p3Y00DwTFljfY");
 
 
   // The items the customer wants to buy
@@ -149,11 +149,10 @@
       const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
-          // Make sure to change this to your payment completion page
-          // return_url: 'https://www.aimljobs.co/success-page',
-          
           //test
-          return_url: 'https://sarim-khalid-e08a65.webflow.io/success-page',
+          //return_url: 'https://sarim-khalid-e08a65.webflow.io/success-page',
+
+          return_url: 'https://www.aimljobs.co/success-page',
           receipt_email: emailAddress,
         },
       });
